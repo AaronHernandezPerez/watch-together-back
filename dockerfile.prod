@@ -1,0 +1,10 @@
+FROM node:16
+WORKDIR /code/back
+COPY package*.json ./
+
+ENV NODE_ENV=production
+# Needs devDependencies for typescript
+RUN npm ci --include=dev
+COPY . .
+RUN npm run build
+CMD npm run start

@@ -1,0 +1,51 @@
+{
+  "version": "1.0.0",
+  "author": "Aaron Hernandez Perez",
+  "description": "",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "name": "back",
+  "scripts": {
+    "dev": "nodemon",
+    "serve": "node --inspect=0.0.0.0:9229 -r ts-node/register src/index.ts",
+    "start": "node dist/index.js",
+    "build": "rimraf ./dist && mkdir dist && tsc",
+    "build:docker": "npm run down && docker-compose build",
+    "build:prod": "docker-compose build -f docker-compose.yml -f  docker-compose.prod.yml",
+    "lint": "prettier --loglevel warn --write \"src/**/*.{js,ts}\" && eslint \"src/**/*.{js,ts}\" --quiet --fix",
+    "lint:check": "eslint \"*/**/*.{js,ts}\"",
+    "up": "docker-compose up",
+    "down": "docker-compose down",
+    "test": "jest",
+    "discord": "nodemon --exec 'ts-node' ./src/discord/discord.ts"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0",
+    "eslint": "^8.10.0",
+    "fastify": "^3.27.4",
+    "fastify-autoload": "^3.11.0",
+    "fastify-cors": "^6.0.3",
+    "redis": "^4.0.4",
+    "socket.io": "^4.4.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "@types/jest": "^27.4.1",
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "5.14.0",
+    "@typescript-eslint/parser": "5.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "fastify-tsconfig": "^1.0.1",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.1.3",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2"
+  }
+}

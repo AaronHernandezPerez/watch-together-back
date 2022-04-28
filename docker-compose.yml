@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  back:
+    build: ./
+    image: watch-together-back
+    ports:
+      - "8000:8000"
+      - "9229:9229"
+    volumes:
+      - ./:/code/back
+      - /code/back/node_modules # To avoid copyng local node modules to the image
+    restart: always
+  discord:
+    image: "watch-together-back"
+    command: "npm run discord"
+    volumes:
+      - ./:/code/back
+      - /code/back/node_modules
+    restart: always
+  redis:
+    image: "redis:alpine"
+    restart: always
